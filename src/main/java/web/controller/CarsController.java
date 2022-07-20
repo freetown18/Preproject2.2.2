@@ -1,5 +1,6 @@
 package web.controller;
 
+import jdk.jfr.ContentType;
 import models.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,14 +24,12 @@ public class CarsController {
 
     @GetMapping("/cars")
     public String printCars(@RequestParam(value = "amount") int amount, Model model) {
-        List<Car> cars = new ArrayList<>();
-            cars.add(new Car("Car1", "Sedan", 120));
-            cars.add(new Car("Car2", "Hatchback", 96));
-            cars.add(new Car("Car3", "SUV", 150));
-            cars.add(new Car("Car4", "Truck", 390));
-            cars.add(new Car("Car5", "Sport-car", 420));
-
-        model.addAttribute("cars", carService.listCars(cars, amount));
+        if (amount < 0) {
+            String s = "Amount must be >=0!)";
+            model.addAttribute("negative", s);
+        } else {
+            model.addAttribute("cars", carService.listCars(amount));
+        }
         return "cars";
     }
 }

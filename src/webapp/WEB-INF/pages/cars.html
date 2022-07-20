@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Cars</title>
 </head>
 <body>
     <h1>Cars</h1>
     <br>
     <table border = "1">
-        <tr><th>Brand</th><th>Type</th><th>Power</th></tr> <!--ряд с ячейками заголовков-->
+        <tr><th>Brand</th><th>Type</th><th>Power</th></tr>
     <tr th:each="car : ${cars}">
         <td th:utext="${car.getBrand()}">brand</td>
         <td th:utext="${car.getType()}">color</td>
         <td th:utext="${car.getPower()}">power</td>
     </tr>
     </table>
+<div th:text="${negative}" />
 </body>
 </html>
